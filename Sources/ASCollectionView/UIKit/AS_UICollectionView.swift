@@ -25,6 +25,7 @@ public class AS_CollectionViewController: UIViewController
 	{
 		collectionViewLayout = layout
 		super.init(nibName: nil, bundle: nil)
+        updateNavigationBar(animated: false)
 	}
 
 	required init?(coder: NSCoder)
@@ -32,11 +33,16 @@ public class AS_CollectionViewController: UIViewController
 		fatalError("init(coder:) has not been implemented")
 	}
 
+    private func updateNavigationBar(animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
 	override public func viewWillAppear(_ animated: Bool)
 	{
 		super.viewWillAppear(animated)
 		// NOTE: Due to some SwiftUI bugs currently, we've chosen to call this here instead of actual parent call
 		coordinator?.onMoveToParent()
+        updateNavigationBar(animated: animated)
 	}
 
 	override public func viewDidDisappear(_ animated: Bool)
@@ -44,11 +50,13 @@ public class AS_CollectionViewController: UIViewController
 		super.viewDidDisappear(animated)
 		// NOTE: Due to some SwiftUI bugs currently, we've chosen to call this here instead of actual parent call
 		coordinator?.onMoveFromParent()
+        updateNavigationBar(animated: animated)
 	}
 
 	override public func viewWillDisappear(_ animated: Bool)
 	{
 		super.viewWillDisappear(animated)
+        updateNavigationBar(animated: animated)
 	}
 
 	override public func loadView()
@@ -60,6 +68,7 @@ public class AS_CollectionViewController: UIViewController
 	{
 		super.viewDidLoad()
 		view.backgroundColor = .clear
+        updateNavigationBar(animated: false)
 	}
 
 	override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
