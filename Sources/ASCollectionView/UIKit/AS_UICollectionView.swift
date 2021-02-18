@@ -34,7 +34,7 @@ public class AS_CollectionViewController: UIViewController
 	}
 
     private func updateNavigationBar(animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
 	override public func viewWillAppear(_ animated: Bool)
